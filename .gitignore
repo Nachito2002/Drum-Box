@@ -1,0 +1,5 @@
+# Folder of production
+build
+
+# Dependencies
+node_modules
