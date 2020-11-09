@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
-    "dev": "webpack --mode development --watch"
+    "dev": "webpack --mode development --watch",
+    "dev-server": "lite-server"
   },
   "keywords": [],
   "author": "Ignacio Alejandro Torres Franceschi",
@@ -19,6 +20,7 @@
     "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^5.0.1",
     "html-webpack-plugin": "^5.0.0-alpha.13",
+    "lite-server": "^2.5.4",
     "node-sass": "^5.0.0",
     "sass": "^1.29.0",
     "sass-loader": "^10.0.5",
