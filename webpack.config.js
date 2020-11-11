@@ -25,6 +25,14 @@ module.exports = {
 				}
 			},
 			{
+				test: /\.css$/i,
+				exclude: /node_modules/,
+				use: [
+					'style-loader',
+					'css-loader'
+				]
+			},
+			{
 				test: /\.s[ac]ss$/i,
 				exclude: /node_modules/,
 				use: [
@@ -36,7 +44,7 @@ module.exports = {
 		]
 	},
 	plugins: [
-		// new webpack.ProgressPlugin(),
+		new webpack.ProgressPlugin(),
 		new CleanWebpackPlugin(),
 		new HtmlWebpackPlugin({
 			title: 'Drum Box',

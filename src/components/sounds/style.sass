@@ -1,0 +1,28 @@
+$button-size: 5rem
+$button-color: #793EB8
+
+.sounds-button
+	width: $button-size
+	height: $button-size
+	font-size: 1.8rem
+	color: white
+	background-image: linear-gradient(#F4A4A4, #A4A4F4)
+	border: .2rem solid $button-color
+	border-radius: 1rem
+	box-shadow: .2rem .2rem $button-color
+	animation-duration: 500ms
+	animation-delay: 0
+	animation-direction: alternate
+	animation-timing-function: ease
+	animation-iteration-count: 1
+
+.sounds-button:focus
+	outline: none
+
+@keyframes move
+	0%
+		box-shadow: .2rem .2rem $button-color
+	50%
+		box-shadow: -.2rem -.2rem $button-color
+	100%
+		box-shadow: .2rem .2rem $button-color
