@@ -1,7 +1,9 @@
 import React from 'react';
-import './style.sass'
+import './style.sass';
+import { connect } from 'react-redux';
+import { power_action } from '../../../redux/actions/powerAction';
 
-const Page = () => {
+const Page = (props) => {
 
 	const handlePower = () => {
 		const button = document.getElementById('power-button')
@@ -10,6 +12,7 @@ const Page = () => {
 		} else {
 			button.style.color = 'green';
 		}
+        props.power_action();
 	}
 
 	return (
@@ -21,4 +24,8 @@ const Page = () => {
 	);
 };
 
-export default Page;
+const mapDispatchToProps = {
+    power_action
+}
+
+export default connect(null, mapDispatchToProps)(Page);

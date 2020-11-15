@@ -4,7 +4,7 @@ import Page from './page'
 const Sounds = (props) => {
 	return (
 		<div>
-			<Page id={ props.id }/>
+			<Page obj={ props.obj } />
 		</div>
 	);
 };

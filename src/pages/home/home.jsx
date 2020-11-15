@@ -5,20 +5,19 @@ import Bank from '../../components/buttons/bank';
 import Screen from '../../components/screen';
 import Volume from '../../components/volume';
 import styles from './style.module.sass';
+import { connect } from 'react-redux';
+import { listSounds } from '../../listSounds';
 
-const Home = () => {
+const Home = (props) => {
+    const listComponentsSounds = listSounds[props.index].map((obj, i) =>
+        <Sounds obj={ obj } key={ i } />
+    );
 	return (
 		<div className={ styles.box }>
 			<div className={ styles.buttons }>
-				<Sounds id="button1"/>
-				<Sounds id="button2"/>
-				<Sounds id="button3"/>
-				<Sounds id="button4"/>
-				<Sounds id="button5"/>
-				<Sounds id="button6"/>
-				<Sounds id="button7"/>
-				<Sounds id="button8"/>
-				<Sounds id="button9"/>
+            {
+                listComponentsSounds
+            }
 			</div>
 			<div className={ styles.controls }>
 				<Power />
@@ -30,4 +29,10 @@ const Home = () => {
 	);
 };
 
-export default Home;
+const mapStateToProps = state => {
+    return {
+        index: state.change_bank_reducer
+    };
+};
+
+export default connect(mapStateToProps)(Home);
