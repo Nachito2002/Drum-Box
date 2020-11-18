@@ -1,6 +1,7 @@
 import React from 'react';
 import './style.sass';
 import { change_bank_action } from '../../../redux/actions/changeBankAction';
+import { change_message_screen } from '../../../redux/actions/screenMessageAction';
 import { connect } from 'react-redux';
 
 const Page = (props) => {
@@ -16,6 +17,12 @@ const Page = (props) => {
 			animation = false
 		}
         props.change_bank_action();
+
+        if (animation) {
+            props.change_message_screen('Bank 2');
+        } else {
+            props.change_message_screen('Bank 1');
+        }
 	}
 
 	return (
@@ -29,7 +36,8 @@ const Page = (props) => {
 };
 
 const mapDispatchToProps = {
-     change_bank_action
-}
+    change_bank_action,
+    change_message_screen
+};
 
 export default connect(null, mapDispatchToProps)(Page);

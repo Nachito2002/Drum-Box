@@ -2,6 +2,7 @@ import React from 'react';
 import './style.sass';
 import { connect } from 'react-redux';
 import { power_action } from '../../../redux/actions/powerAction';
+import { change_message_screen } from '../../../redux/actions/screenMessageAction';
 
 const Page = (props) => {
 
@@ -11,8 +12,15 @@ const Page = (props) => {
 			button.style.color = 'red';
 		} else {
 			button.style.color = 'green';
-		}
+		};
+
         props.power_action();
+
+        if (props.power) {
+            props.change_message_screen('Bank Off');
+        } else {
+            props.change_message_screen('Bank On');
+        }
 	}
 
 	return (
@@ -24,8 +32,15 @@ const Page = (props) => {
 	);
 };
 
+const mapStateToProps = state => {
+    return {
+        power: state.power_reducer
+    }
+};
+
 const mapDispatchToProps = {
-    power_action
+    power_action,
+    change_message_screen
 }
 
-export default connect(null, mapDispatchToProps)(Page);
+export default connect(mapStateToProps, mapDispatchToProps)(Page);

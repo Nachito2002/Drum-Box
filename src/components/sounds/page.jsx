@@ -1,9 +1,11 @@
 import React from 'react';
 import styles from './style.sass';
+import { connect } from 'react-redux';
+import { change_message_screen} from '../../redux/actions/screenMessageAction';
 
 class Page extends React.Component {
     constructor(props) {
-        super();
+        super(props);
 
         this.componentDidMount = this.componentDidMount.bind(this);
     };
@@ -12,6 +14,7 @@ class Page extends React.Component {
 
         const soundPlay = () => {
         let sound = new Audio(this.props.obj.url);
+        sound.volume = this.props.volume / 100;
         sound.play();
         };
 
@@ -21,29 +24,50 @@ class Page extends React.Component {
                 e.keyCode === this.props.obj.keyCode.max
             ) {
                 soundPlay();
+                messageScreen(this.props.obj.id);
             }
+        };
+
+        const animation = () => {
+            document.getElementById(this.props.obj.id).style.animationName = 'move';
+        };
+
+        const messageScreen = id => {
+            this.props.change_message_screen(id);
         }
 
         document.getElementById(this.props.obj.id).addEventListener('animationend', function(){
             this.style.animationName = ''}, false);
 
+        const getId = () => {
+            return this.props.obj.id
+        }
+
         document.getElementById(this.props.obj.id).addEventListener('click', function() {
-            this.style.animationName = 'move';
             soundPlay();
+            animation();
+            messageScreen(getId());
         });
 
-        document.getElementById('body').addEventListener('keyup', function(e) {
+        document.getElementById('body').addEventListener('keypress', function(e) {
             checkKeyCode(e);
         });
     };
     
     render() {
 	    return (
-            <div>
-		        <button className="sounds-button" id={this.props.obj.id}>{ this.props.obj.keyTrigger }</button>
-            </div>
+		    <button className="sounds-button" id={this.props.obj.id}>{ this.props.obj.keyTrigger }</button>
         );
     }
 };
+const mapStateToProps = state => {
+    return {
+        volume: state.change_volume_reducer
+    };
+};
 
-export default Page;
+const mapDispatchToProps = {
+  change_message_screen 
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Page);

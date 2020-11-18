@@ -1,7 +1,6 @@
 import React from 'react';
 import styles from './style.module.sass';
 import { connect } from 'react-redux';
-import { change_message_screen } from '../../redux/actions/screenMessageAction';
 
 const Page = (props) => {
 	return (
@@ -13,7 +12,7 @@ const Page = (props) => {
 
 const mapStateToProps = state => {
     return {
-        message: state.change_message_screen
+        message: state.change_message_screen_reducer
     }
 }
-export default Page;
+export default connect(mapStateToProps)(Page);
