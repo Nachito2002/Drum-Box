@@ -3,3 +3,9 @@ build
 
 # Dependencies
 node_modules
+
+# Firebase
+.firebase/
+.firebaserc
+.firebase.json
+
